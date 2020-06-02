@@ -61,8 +61,10 @@ pyenv install 3.7.3
 - Activate the virtual environment.
 
 ```
-venv
+:reinvented-checkers <user>: venv
 ```
+
+Note that `venv` in other directories lists the existing virtual environments. To deactivate the virtual environment, use the command `deactivate`.
 
 - Install the dependencies for this project.
 

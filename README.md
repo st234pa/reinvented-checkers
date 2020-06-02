@@ -58,6 +58,18 @@ pyenv install 3.7.3
 :reinvented-checkers <user>: venv-new 3.7.3
 ```
 
+- Activate the virtual environment.
+
+```
+venv
+```
+
+- Install the dependencies for this project.
+
+```
+pip install -r requirements.txt
+```
+
 ### Google Cloud
 
 ## Local testing

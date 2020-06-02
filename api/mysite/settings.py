@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+from mysite import secure
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -21,7 +22,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # Update the secret key to a value of your own before deploying the app.
-SECRET_KEY = 'lldtg$9(wi49j_hpv8nnqlh!cj7kmbwq0$rj7vy(b(b30vlyzj'
+SECRET_KEY = secure.SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -94,8 +95,8 @@ if os.getenv('GAE_APPLICATION', None):
         'default': {
             'ENGINE': 'django.db.backends.mysql',
             'HOST': '/cloudsql/reinvented-checkers:us-east4:reinvented-checkers',
-            'USER': 'stephanie.yoon123',
-            'PASSWORD': 'minecraft',
+            'USER': secure.USER,
+            'PASSWORD': secure.PASSWORD,
             'NAME': 'polls',
         }
     }
@@ -112,8 +113,8 @@ else:
             'HOST': '127.0.0.1',
             'PORT': '3306',
             'NAME': 'polls',
-            'USER': 'stephanie.yoon123',
-            'PASSWORD': 'minecraft',
+            'USER': secure.USER,
+            'PASSWORD': secure.PASSWORD,
         }
     }
 # [END db_setup]

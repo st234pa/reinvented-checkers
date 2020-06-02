@@ -77,7 +77,7 @@ pip install -r requirements.txt
 ### Google Cloud
 
 - Download the Cloud SDK archive file, which can be found in the [Quickstart](https://cloud.google.com/sdk/docs/quickstart-macos).
-- Extract the archive to any location on your file system; preferably, your home directory. On macOS, this can be achieved by opening the downloaded .tar.gz archive file in the preferred location.
+- Extract the archive to any location on your file system; preferably, your home directory. On macOS, this can be achieved by opening the downloaded `.tar.gz` archive file in the preferred location.
 - Initialize the SDK
 
 ```
@@ -88,4 +88,28 @@ gcloud init
 
 - At the command prompt, select the Cloud Platform project, `reinvented-checkers`, from the list of those where you have Owner, Editor or Viewer permissions. If you only have one project, `gcloud init` selects it for you.
 
-## Local testing
+### React Native
+
+- TBD
+
+## Running the project locally
+
+### Django RESTful API
+
+- Make sure the virtual environment is activated.
+
+- In the `reinvented-checkers/api` directory, connect to the Cloud SQL instance.
+
+```
+:api <user>: cloud_sql_proxy -instances=reinvented-checkers:us-east4:reinvented-checkers-postgres=tcp:5432
+```
+
+- Open a new Terminal and in the `reinvented-checkers/api/djangorest` directory, run the server.
+
+```
+:djangorest <user>: python manage.py runserver
+```
+
+### React Native App
+
+- TBD

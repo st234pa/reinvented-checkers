@@ -90,12 +90,11 @@ if os.getenv('GAE_APPLICATION', None):
         }
     }
 else:
-    # Running locally so connect to either a local MySQL instance or connect to
+    # Running locally so connect to either a local instance or connect to
     # Cloud SQL via the proxy. To start the proxy via command line:
     #
     #     $ cloud_sql_proxy -instances=reinvented-checkers:us-east4:reinvented-checkers-postgres=tcp:5432
-    #
-    # See https://cloud.google.com/sql/docs/mysql-connect-proxy
+
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',

@@ -14,7 +14,7 @@ brew update
 brew install pyenv
 ```
 
-- Add the following to your '~/.bash_profile'
+- Add the following to your `~/.bash_profile`
 
 ### Google Cloud
 

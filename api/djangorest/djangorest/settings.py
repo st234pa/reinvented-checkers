@@ -39,8 +39,18 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework.authtoken',
     'api',
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+    ),
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -51,6 +61,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
 
 ROOT_URLCONF = 'djangorest.urls'
 
@@ -93,7 +104,8 @@ else:
     # Running locally so connect to either a local instance or connect to
     # Cloud SQL via the proxy. To start the proxy via command line:
     #
-    #     $ cloud_sql_proxy -instances=reinvented-checkers:us-east4:reinvented-checkers-postgres=tcp:5432
+    # ./cloud_sql_proxy -instances=
+    # reinvented-checkers:us-central1:reinvented-checkers-postgres=tcp:5432
 
     DATABASES = {
         'default': {

@@ -62,6 +62,7 @@ class SinglePlayerGame(models.Model):
     def create(cls, user, board, user_color, name):
         single_player_game = cls(
             user=user,
+            name=name,
             board=board,
             user_color=user_color,
             game_status=SinglePlayerGame.UNFINISHED

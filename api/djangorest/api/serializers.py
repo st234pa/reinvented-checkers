@@ -3,27 +3,20 @@
 from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
 from django.contrib.auth.models import User
-from .models import Checkerboard
+from .models import SinglePlayerGame, Checkerboard
 
 
 class CheckerboardSerializer(serializers.ModelSerializer):
-    """Serializer to map the Model instance into JSON format."""
-
     class Meta:
-        """Meta class to map serializer's fields with the model fields."""
         model = Checkerboard
         fields = (
-            'id',
             'current_turn',
-            'board'
+            'board',
         )
 
 
+
 class UserSerializer(serializers.ModelSerializer):
-    email = serializers.EmailField(
-        required=True,
-        validators=[UniqueValidator(queryset=User.objects.all())]
-    )
     username = serializers.CharField(
         max_length=32,
         validators=[UniqueValidator(queryset=User.objects.all())]
@@ -32,12 +25,28 @@ class UserSerializer(serializers.ModelSerializer):
                                      write_only=True)
 
     def create(self, validated_data):
-        user = User(email=validated_data['email'],
-                    username=validated_data['username'])
+        user = User(username=validated_data['username'])
         user.set_password(validated_data['password'])
         user.save()
         return user
 
     class Meta:
         model = User
-        fields = ('id', 'username', 'email', 'password')
+        fields = ('username', 'password')
+
+
+class SinglePlayerGameSerializer(serializers.ModelSerializer):
+    """Serializer to map the Model instance into JSON format."""
+    board = CheckerboardSerializer(many=False)
+    user = UserSerializer(many=False)
+
+    class Meta:
+        """Meta class to map serializer's fields with the model fields."""
+        model = SinglePlayerGame
+        fields = (
+            'name',
+            'board',
+            'user',
+            'user_color',
+            'game_status'
+        )

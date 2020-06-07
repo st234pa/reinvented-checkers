@@ -1,56 +1,69 @@
-"""
-Database models.
-"""
+""" Database models. """
 from django.db import models
 from django.contrib.postgres.fields import ArrayField
-from django.db.models.signals import post_save
 from django.contrib.auth.models import User
-from django.dispatch import receiver
 
 
 # Create your models here.
 
-
 class Checkerboard(models.Model):
-    """ Checkerboard model. """
-    # white's turn --> current_turn = 'w'
+    """ Board model. """
+    # white's turn --> current_turn = 'r'
     # black's turn --> current_turn = 'b'
     current_turn = models.CharField(max_length=1, blank=False)
     # empty space: "_"
-    # white: "w"
-    # white king: "W"
+    # red: "r"
+    # red king: "R"
     # black: "b"
     # black king: "B"
     board = ArrayField(
         ArrayField(
-            models.CharField(max_length=1, blank=True),
+            models.CharField(max_length=1, blank=False),
         ),
     )
 
-    def __str__(self):
-        """ Return a human readable representation of the model instance. """
-        rep = ""
-        for row in self.board:
-            for square in row:
-                rep += square + " "
-            rep += "\n"
-        return rep
+    @classmethod
+    def create(cls):
+        checkerboard = cls(
+            current_turn='w',
+            board=[['_' for square in range(8)] for row in range(8)]
+        )
+        return checkerboard
 
 
-# class Profile(models.Model):
-#     """ User profile model. """
-#     user = models.OneToOneField(User, on_delete=models.CASCADE)
-#     boards = models.ManyToManyField(Checkerboard)
+class SinglePlayerGame(models.Model):
+    """ Single player game model. """
 
+    user = models.ForeignKey(
+        User, on_delete=models.PROTECT, related_name='single_player_games')
 
-# @receiver(post_save, sender=User)
-# def create_user_profile(sender, instance, created, **kwargs):
-#     """ When a save event occurs, create a user profile. """
-#     if created:
-#         Profile.objects.create(user=instance)
+    board = models.OneToOneField(
+        Checkerboard, on_delete=models.PROTECT, primary_key=True,)
 
+    user_color = models.CharField(max_length=1, blank=False)
 
-# @receiver(post_save, sender=User)
-# def save_user_profile(sender, instance, **kwargs):
-#     """ When a save event occurs, update a user profile. """
-#     instance.profile.save()
+    name = models.CharField(max_length=200, blank=False)
+
+    UNFINISHED = 'unfinished'
+    USER_WON = 'user_won'
+    USER_LOST = 'user_lost'
+    DRAW = 'draw'
+
+    GAME_STATUSES = [
+        (UNFINISHED, 'Unfinished'),
+        (USER_WON, 'You Won'),
+        (USER_LOST, 'You Lost'),
+        (DRAW, 'Draw')
+    ]
+
+    game_status = models.CharField(choices=GAME_STATUSES, max_length=10)
+
+    @classmethod
+    def create(cls, user, board, user_color, name):
+        single_player_game = cls(
+            user=user,
+            board=board,
+            user_color=user_color,
+            game_status=SinglePlayerGame.UNFINISHED
+        )
+        return single_player_game

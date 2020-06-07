@@ -94,7 +94,7 @@ if os.getenv('GAE_APPLICATION', None):
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'HOST': '/cloudsql/reinvented-checkers:us-east4:reinvented-checkers-postgres',
+            'HOST': '/cloudsql/reinvented-checkers:us-east4:postgres-instance',
             'USER': secure.USER,
             'PASSWORD': secure.PASSWORD,
             'NAME': secure.NAME,
@@ -104,8 +104,10 @@ else:
     # Running locally so connect to either a local instance or connect to
     # Cloud SQL via the proxy. To start the proxy via command line:
     #
-    # ./cloud_sql_proxy -instances=
-    # reinvented-checkers:us-central1:reinvented-checkers-postgres=tcp:5432
+    # ./cloud_sql_proxy -instances=reinvented-checkers:us-east4:postgres-instance=tcp:5432
+
+    # To use psql
+    # psql "host=127.0.0.1 sslmode=disable dbname=reinvented-checkers user=postgres"
 
     DATABASES = {
         'default': {

@@ -8,20 +8,15 @@ An app for playing checkers!
 
 - Make sure you have [Homebrew](https://brew.sh/) installed.
 - Install [pyenv](https://github.com/pyenv/pyenv).
-
 ```
 brew update
 brew install pyenv
 ```
-
 - Create a directory for virtual environments
-
 ```
 :~ <user>: mkdir .virtualenvs
 ```
-
 - Add the following to `~/.bash_profile`
-
 ```
 export PATH="/Users/<user>/.pyenv/bin:$PATH"
 eval "$(pyenv init -)"
@@ -45,34 +40,39 @@ function venv-new {
    cd $dir
 }
 ```
-
 - Open a new Terminal so the path changes take effect. In the `.pyenv/` directory, install Python 3.7.3
-
 ```
 pyenv install 3.7.3
 ```
-
 - Clone this repository. In the project directory, create a new virtual environment.
-
 ```
 :reinvented-checkers <user>: venv-new 3.7.3
 ```
-
 - Activate the virtual environment.
-
 ```
 :reinvented-checkers <user>: venv
 ```
-
 Note that `venv` in other directories lists the existing virtual environments. To deactivate the virtual environment, use the command `deactivate`.
-
 - Install the dependencies for this project.
-
 ```
 pip install -r requirements.txt
 ```
-
 - Get the secret keys and credentials separately and add them to `reinvented-checkers/api/djangorest/djangorest/secure.py`. This is included in the `.gitignore`. Do not commit this file!
+
+### PostgreSQL
+
+- Install PostgreSQL using homebrew.
+```
+brew install postgresql
+```
+- Now you can start the database server using
+```
+pg_ctl -D /usr/local/var/postgres -l logfile start
+```
+- Similarly you can stop the database server using
+```
+pg_ctl -D /usr/local/var/postgres -l logfile stop
+```
 
 ### React Native
 

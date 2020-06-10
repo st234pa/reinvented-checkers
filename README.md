@@ -74,27 +74,13 @@ pip install -r requirements.txt
 
 - Get the secret keys and credentials separately and add them to `reinvented-checkers/api/djangorest/djangorest/secure.py`. This is included in the `.gitignore`. Do not commit this file!
 
-### Google Cloud
-
-- Download the Cloud SDK archive file, which can be found in the [Quickstart](https://cloud.google.com/sdk/docs/quickstart-macos).
-- Extract the archive to any location on your file system; preferably, your home directory. On macOS, this can be achieved by opening the downloaded `.tar.gz` archive file in the preferred location.
-- Initialize the SDK
-
-```
-gcloud init
-```
-
-- Accept the option to log in using your Google user account, and in your browser, log in to your Google user account when prompted and click Allow to grant permission to access Google Cloud Platform resources.
-
-- At the command prompt, select the Cloud Platform project, `reinvented-checkers`, from the list of those where you have Owner, Editor or Viewer permissions. If you only have one project, `gcloud init` selects it for you.
-
 ### React Native
 
 - TBD
 
 ## Running the project locally
 
-### Django RESTful API
+### Django API
 
 - Make sure the virtual environment is activated.
 

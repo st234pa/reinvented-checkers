@@ -3,8 +3,8 @@ from django.db import models
 from django.contrib.postgres.fields import ArrayField
 from django.contrib.auth.models import User
 
-
 # Create your models here.
+
 
 class Checkerboard(models.Model):
     """ Board model. """
@@ -24,6 +24,7 @@ class Checkerboard(models.Model):
 
     @classmethod
     def create(cls):
+        """Create a new checkerboard."""
         checkerboard = cls(
             current_turn='w',
             board=[['_' for square in range(8)] for row in range(8)]
@@ -36,6 +37,8 @@ class SinglePlayerGame(models.Model):
 
     user = models.ForeignKey(
         User, on_delete=models.PROTECT, related_name='single_player_games')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     board = models.OneToOneField(
         Checkerboard, on_delete=models.PROTECT, primary_key=True,)
@@ -60,6 +63,7 @@ class SinglePlayerGame(models.Model):
 
     @classmethod
     def create(cls, user, board, user_color, name):
+        """Create a new single plager game."""
         single_player_game = cls(
             user=user,
             name=name,

@@ -10,8 +10,9 @@ from rest_framework.status import (
 )
 from rest_framework.response import Response
 from rest_framework import status
-from . import serializers
+from rest_framework import serializers
 from .models import Checkerboard, SinglePlayerGame
+from . import serializers
 
 
 class SampleView(APIView):
@@ -58,6 +59,19 @@ class CreateSinglePlayerGame(APIView):
         game.save()
         serializer = serializers.SinglePlayerGameSerializer(game)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+
+class GetSinglePlayerGames(APIView):
+    """ Get the current user's single player games. """
+
+    def get(self, request):
+        """ Returns a list of the user's single player games in reverse chronological order. """
+        # user_id = request.user.id
+        query_set_list = list(SinglePlayerGame.objects.filter(
+            user_id__exact=request.user.id).order_by('-created_at', 'name'))
+        serialized_data = [serializers.SinglePlayerGameSerializer(
+            game).data for game in query_set_list]
+        return Response(serialized_data, status=HTTP_200_OK)
 
 
 class Login(APIView):

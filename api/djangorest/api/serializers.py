@@ -15,7 +15,6 @@ class CheckerboardSerializer(serializers.ModelSerializer):
         )
 
 
-
 class UserSerializer(serializers.ModelSerializer):
     username = serializers.CharField(
         max_length=32,
@@ -46,6 +45,8 @@ class SinglePlayerGameSerializer(serializers.ModelSerializer):
         fields = (
             'name',
             'board',
+            'created_at',
+            'updated_at',
             'user',
             'user_color',
             'game_status'

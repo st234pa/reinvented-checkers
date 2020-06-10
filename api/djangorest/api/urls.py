@@ -9,5 +9,6 @@ urlpatterns = [
     path('api/create-account', views.UserCreate.as_view()),
     path('api/logout', views.Logout.as_view()),
     path('api/create-single-player-game',
-         views.CreateSinglePlayerGame.as_view())
+         views.CreateSinglePlayerGame.as_view()),
+    path('api/get-single-player-games', views.GetSinglePlayerGames.as_view())
 ]

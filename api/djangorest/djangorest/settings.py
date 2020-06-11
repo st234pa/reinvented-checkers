@@ -88,37 +88,22 @@ WSGI_APPLICATION = 'djangorest.wsgi.application'
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
 # [START db_setup]
-if os.getenv('GAE_APPLICATION', None):
-    # Running on production App Engine, so connect to Google Cloud SQL using
-    # the unix socket at /cloudsql/<your-cloudsql-connection string>
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'HOST': '/cloudsql/reinvented-checkers:us-east4:postgres-instance',
-            'USER': secure.USER,
-            'PASSWORD': secure.PASSWORD,
-            'NAME': secure.NAME,
-        }
-    }
-else:
-    # Running locally so connect to either a local instance or connect to
-    # Cloud SQL via the proxy. To start the proxy via command line:
-    #
-    # ./cloud_sql_proxy -instances=reinvented-checkers:us-east4:postgres-instance=tcp:5432
 
-    # To use psql
-    # psql "host=127.0.0.1 sslmode=disable dbname=reinvented-checkers user=postgres"
+# Running locally so connect to either a local instance or
 
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'HOST': '127.0.0.1',
-            'PORT': '5432',
-            'NAME': secure.NAME,
-            'USER': secure.USER,
-            'PASSWORD': secure.PASSWORD,
-        }
+# To use psql
+# psql "host=127.0.0.1 sslmode=disable dbname=<secure.NAME> user=<secure.USER>"
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'HOST': 'localhost',
+        'PORT': '',
+        'NAME': secure.NAME,
+        'USER': secure.USER,
+        'PASSWORD': secure.PASSWORD,
     }
+}
+
 # [END db_setup]
 
 # Password validation

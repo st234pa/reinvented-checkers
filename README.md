@@ -9,12 +9,12 @@ An app for playing checkers!
 - Make sure you have [Homebrew](https://brew.sh/) installed.
 - Install [pyenv](https://github.com/pyenv/pyenv).
 ```
-brew update
-brew install pyenv
+$ brew update
+$ brew install pyenv
 ```
 - Create a directory for virtual environments
 ```
-:~ <user>: mkdir .virtualenvs
+:~ $ mkdir .virtualenvs
 ```
 - Add the following to `~/.bash_profile`
 ```
@@ -42,36 +42,58 @@ function venv-new {
 ```
 - Open a new Terminal so the path changes take effect. In the `.pyenv/` directory, install Python 3.7.3
 ```
-pyenv install 3.7.3
+$ pyenv install 3.7.3
 ```
 - Clone this repository. In the project directory, create a new virtual environment.
 ```
-:reinvented-checkers <user>: venv-new 3.7.3
+:reinvented-checkers $ venv-new 3.7.3
 ```
 - Activate the virtual environment.
 ```
-:reinvented-checkers <user>: venv
+:reinvented-checkers $ venv
 ```
 Note that `venv` in other directories lists the existing virtual environments. To deactivate the virtual environment, use the command `deactivate`.
 - Install the dependencies for this project.
 ```
-pip install -r requirements.txt
+:reinvented-checkers $ pip install -r requirements.txt
 ```
-- Get the secret keys and credentials separately and add them to `reinvented-checkers/api/djangorest/djangorest/secure.py`. This is included in the `.gitignore`. Do not commit this file!
 
 ### PostgreSQL
 
 - Install PostgreSQL using homebrew.
 ```
-brew install postgresql
+$ brew install postgresql
 ```
-- Now you can start the database server using
+- Make a new database cluster.
 ```
-pg_ctl -D /usr/local/var/postgres -l logfile start
+$ initdb /usr/local/var/postgres -E utf8
 ```
-- Similarly you can stop the database server using
+- Now you can start the local database server using
 ```
-pg_ctl -D /usr/local/var/postgres -l logfile stop
+$ pg_ctl -D /usr/local/var/postgres start
+```
+Note that you can stop the local database server using
+```
+$ pg_ctl -D /usr/local/var/postgres stop
+```
+- After starting the local database server, create a database.
+```
+$ createdb reinvented-checkers
+```
+- Connect to the database and add a new superuser with a username and password (replace `<your_name`> and `<your_password>`). 
+```
+$ psql dbname=reinvented-checkers
+reinvented-checkers=# create role <your_username> WITH SUPERUSER CREATEDB CREATEROLE LOGIN ENCRYPTED PASSWORD '<your_password>';
+```
+- In the `reinvented-checkers/api/djangorest/djangorest/` directory, make a new file called `secure.py`. Add the following contents to it. This is included in the `.gitignore`. Do not commit this file!
+```
+USER = '<your_username>'
+PASSWORD = '<your_password>'
+NAME = 'reinvented-checkers'
+```
+- In the `reinvented-checkers/api/djangorest/` directory, migrate the database.
+```
+:djangorest $ python manage.py migrate
 ```
 
 ### React Native
@@ -82,20 +104,11 @@ pg_ctl -D /usr/local/var/postgres -l logfile stop
 
 ### Django API
 
-- Make sure the virtual environment is activated.
-
-- In the `reinvented-checkers/api` directory, connect to the Cloud SQL instance.
-
-```
-:api <user>: cloud_sql_proxy -instances=reinvented-checkers:us-east4:reinvented-checkers-postgres=tcp:5432
-```
-
+- Make sure the virtual environment is activated and the local database server is running.
 - Open a new Terminal and in the `reinvented-checkers/api/djangorest` directory, run the server.
-
 ```
 :djangorest <user>: python manage.py runserver
 ```
-
 ### React Native App
 
 - TBD

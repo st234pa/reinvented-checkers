@@ -8,12 +8,15 @@
 - Make sure you have [yarn](https://classic.yarnpkg.com/en/docs/install#mac-stable) installed.
 - Clone this repository. 
 
+### Expo Client
+
+- On your device, install the Expo Client app.
+- 
 ## Running the app locally
 
 - Run the API locally following the instructions from `api/README.md`.
-- In the `reinvented-checkers/client/app` directory, run the app with one of the following commands.
+- In the `reinvented-checkers/client/app` directory, run a local server for the app.
 ```
-:app $ yarn ios
-:app $ yarn android
-:app $ yarn web
+:app $ yarn start
 ```
+- Run the app on your device in Expo Client 

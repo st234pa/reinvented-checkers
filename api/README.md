@@ -1,4 +1,4 @@
-# Reinvented Checkers Django API
+# Reinvented Checkers API (Django)
 
 ## Setup (for Mac)
 

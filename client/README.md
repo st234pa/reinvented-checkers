@@ -11,9 +11,13 @@
 :app $ yarn
 ```
 
-### Expo Client
+### Expo
 
-- On your phone, install the Expo Client app.
+- Install the Expo CLI command line utility.
+```
+npm install -g expo-cli
+```
+- On your phone, install the Expo Client app from App Store or Google Play.
 
 ## Running the app locally
 

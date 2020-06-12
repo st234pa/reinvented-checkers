@@ -32,43 +32,51 @@ class Checkerboard(models.Model):
         return checkerboard
 
 
-class SinglePlayerGame(models.Model):
-    """ Single player game model. """
-
-    user = models.ForeignKey(
-        User, on_delete=models.PROTECT, related_name='single_player_games')
+class Game(models.Model):
+    """ Game model. """
+    name = models.CharField(max_length=200, blank=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     board = models.OneToOneField(
-        Checkerboard, on_delete=models.PROTECT, primary_key=True,)
-
-    user_color = models.CharField(max_length=1, blank=False)
-
-    name = models.CharField(max_length=200, blank=False)
+        Checkerboard, on_delete=models.CASCADE)
 
     UNFINISHED = 'unfinished'
-    USER_WON = 'user_won'
-    USER_LOST = 'user_lost'
+    R_WON = 'r_won'
+    B_WON = 'b_won'
     DRAW = 'draw'
 
     GAME_STATUSES = [
         (UNFINISHED, 'Unfinished'),
-        (USER_WON, 'You Won'),
-        (USER_LOST, 'You Lost'),
+        (R_WON, 'Red won'),
+        (B_WON, 'Black won'),
         (DRAW, 'Draw')
     ]
 
     game_status = models.CharField(choices=GAME_STATUSES, max_length=10)
 
     @classmethod
-    def create(cls, user, board, user_color, name):
-        """Create a new single plager game."""
-        single_player_game = cls(
-            user=user,
-            name=name,
+    def create(cls, board, name=name):
+        """Create a new game."""
+        game = cls(
             board=board,
-            user_color=user_color,
-            game_status=SinglePlayerGame.UNFINISHED
+            name=name,
+            game_status=Game.UNFINISHED
         )
+        return game
+
+
+class SinglePlayerGame(models.Model):
+    """ Single player game model. """
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name='single_player_games')
+    user_color = models.CharField(max_length=1, blank=False)
+    game = models.OneToOneField(
+        Game, on_delete=models.CASCADE)
+
+    @classmethod
+    def create(cls, user, user_color, game):
+        """ Create a single player game. """
+        single_player_game = cls(
+            user=user, user_color=user_color, game=game)
         return single_player_game

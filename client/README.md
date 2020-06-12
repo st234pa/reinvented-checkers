@@ -6,7 +6,10 @@
 
 - Make sure you have [node and npm](https://nodejs.org/en/download/) installed. If you don't have it installed, use the macOS installer.
 - Make sure you have [yarn](https://classic.yarnpkg.com/en/docs/install#mac-stable) installed.
-- Clone this repository. 
+- Clone this repository. From the `reinvented-checkers/client/app` directories install dependancies.
+```
+:app $ yarn
+```
 
 ### Expo Client
 

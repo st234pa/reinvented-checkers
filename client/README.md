@@ -28,4 +28,4 @@ npm install -g expo-cli
 :app $ yarn start
 ```
 - Make sure your phone is connected to the same network as the Metro server.
-- Run the app on your phone in Expo Client. For an iPhone, use the Camera app to scan the QR code, which shoud result in a notification that opens the app in Expo when you open it.
+- Run the app on your phone in Expo Client. For an iPhone, use the Camera app to scan the QR code, which should result in a notification that opens the app in Expo when you open it. For an Android, press "Scan QR Code" on the "Projects" tab of the Expo client app and scan the QR code you see in the terminal or in Expo Dev Tools.

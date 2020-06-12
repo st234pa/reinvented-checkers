@@ -10,13 +10,14 @@
 
 ### Expo Client
 
-- On your device, install the Expo Client app.
-- 
+- On your phone, install the Expo Client app.
+
 ## Running the app locally
 
 - Run the API locally following the instructions from `api/README.md`.
-- In the `reinvented-checkers/client/app` directory, run a local server for the app.
+- In the `reinvented-checkers/client/app` directory, run a local Metro server for the app.
 ```
 :app $ yarn start
 ```
-- Run the app on your device in Expo Client 
+- Make sure your phone is connected to the same network as the Metro server.
+- Run the app on your phone in Expo Client. For an iPhone, use the Camera app to scan the QR code, which shoud result in a notification that opens the app in Expo when you open it.

@@ -1,4 +1,4 @@
-# Reinvented Checkers Django Client App
+# Reinvented Checkers React Native Client App
 
 ## Setup (for Mac)
 

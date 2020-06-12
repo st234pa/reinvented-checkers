@@ -1,4 +1,4 @@
-# Reinvented Checkers React Native Client App
+# Reinvented Checkers Client App (React Native)
 
 ## Setup (for Mac)
 

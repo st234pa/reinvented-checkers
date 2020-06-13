@@ -2,6 +2,7 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { AppLoading } from 'expo';
+import * as ScreenOrientation from 'expo-screen-orientation';
 import * as Font from 'expo-font';
 import { Ionicons } from '@expo/vector-icons';
 import { Button, Text } from 'native-base';
@@ -16,6 +17,7 @@ export default function App() {
       Roboto_medium: require('native-base/Fonts/Roboto_medium.ttf'),
       ...Ionicons.font,
     });
+    ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT_UP);
     setIsReady(true);
   }, []);
   if (!isReady) {

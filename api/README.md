@@ -91,7 +91,7 @@ PASSWORD = '<your_password>'
 NAME = 'reinvented-checkers'
 IP = '<your_ip_address>'
 ```
-To find your IP address, go to the Networks section in System Preferences.
+To find your IP address, go to the Network section in System Preferences.
 - In the `reinvented-checkers/api/djangorest/` directory, migrate the database.
 ```
 :djangorest $ python manage.py migrate

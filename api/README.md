@@ -97,5 +97,5 @@ To find your IP address, go to the Network section in System Preferences.
 - Make sure the virtual environment is activated and the local database server is running.
 - Open a new Terminal and in the `reinvented-checkers/api/djangorest` directory, run the server.
 ```
-:djangorest <user>: python manage.py runserver
+:djangorest <user>: python manage.py runserver <your_ip_address>:8000
 ```

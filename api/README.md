@@ -85,10 +85,13 @@ reinvented-checkers=# create role <your_username> WITH SUPERUSER CREATEDB CREATE
 ```
 - In the `reinvented-checkers/api/djangorest/djangorest/` directory, make a new file called `secure.py`. Add the following contents to it. This is included in the `.gitignore`. Do not commit this file!
 ```
+SECRET_KEY = '<secret_key>'
 USER = '<your_username>'
 PASSWORD = '<your_password>'
 NAME = 'reinvented-checkers'
+IP = '<your_ip_address>'
 ```
+To find your IP address, go to the Networks section in System Preferences.
 - In the `reinvented-checkers/api/djangorest/` directory, migrate the database.
 ```
 :djangorest $ python manage.py migrate

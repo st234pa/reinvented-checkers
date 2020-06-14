@@ -2,8 +2,6 @@
 
 ## Setup (for Mac)
 
-### Python
-
 - Make sure you have [Homebrew](https://brew.sh/) installed.
 - Install [pyenv](https://github.com/pyenv/pyenv).
 ```
@@ -55,9 +53,6 @@ Note that `venv` in other directories lists the existing virtual environments. T
 ```
 :reinvented-checkers $ pip install -r requirements.txt
 ```
-
-### PostgreSQL
-
 - Install PostgreSQL using homebrew.
 ```
 $ brew install postgresql

@@ -10,7 +10,7 @@ npm install -g expo-cli
 ```
 - In the `reinvented-checkers/client/app` directory, add a file called `Secure.tsx` and add the following. This file is included in the gitignore. Do not commit this file!
 ```
-export const ip: string = '<your_ip_address';
+export const ip: string = '<your_ip_address>';
 ```
 To find your IP address, go to the Network section in System Preferences.
 - On your phone, install the Expo Client app from App Store or Google Play.

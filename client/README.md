@@ -2,17 +2,17 @@
 
 ## Setup (for Mac)
 
-### Node
-
 - Make sure you have [node and npm](https://nodejs.org/en/download/) installed. If you don't have it installed, use the macOS installer.
 - Make sure you have [yarn](https://classic.yarnpkg.com/en/docs/install#mac-stable) installed.
-
-### Expo
-
 - Install the Expo CLI command line utility.
 ```
 npm install -g expo-cli
 ```
+- In the `reinvented-checkers/client/app` directory, add a file called `Secure.tsx` and add the following. This file is included in the gitignore. Do not commit this file!
+```
+export const ip: string = '<your_ip_address';
+```
+To find your IP address, go to the Network section in System Preferences.
 - On your phone, install the Expo Client app from App Store or Google Play.
 
 ## Running the app locally
